@@ -9,3 +9,4 @@
 
 rootProject.name = 'Titan-Algorithms'
 include('titan-algorithms')
+include('dev')
