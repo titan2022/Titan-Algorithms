@@ -2,8 +2,6 @@ package com.titanrobotics2022.geometry.geometry2d;
 
 import org.junit.jupiter.api.Test;
 
-import edu.wpi.first.wpiutil.math.Vector;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -96,7 +94,10 @@ public class Vector2DTest {
         Vector2D a = new Vector2D(2, 3);
         Vector2D b = new Vector2D(-3, 3);
         double actual = a.dot(b);
-        assertEquals(2 * -3 + 3 * 3, actual, delta);
+        double expected = 2 * -3 + 3 * 3;
+        assertEquals(expected, actual, delta);
+        actual = b.dot(a);
+        assertEquals(expected, actual, delta);
     }
     @Test
     void crossProductTest()
@@ -125,13 +126,13 @@ public class Vector2DTest {
         Vector2D a = new Vector2D(1, 1);
         Vector2D b = new Vector2D(1, 0);
         Vector2D c = new Vector2D(0, -1);
-        double actual = Vector2D.angleBetween(a, b);
+        double actual = Vector2D.shortestAngleBetween(a, b);
         assertEquals(Math.PI / 4, actual, delta);
-        actual = Vector2D.angleBetween(b, a);
+        actual = Vector2D.shortestAngleBetween(b, a);
         assertEquals(Math.PI / 4, actual, delta);
-        actual = Vector2D.angleBetween(a, b.negate());
+        actual = Vector2D.shortestAngleBetween(a, b.negate());
         assertEquals(3 * Math.PI / 4, actual, delta);
-        actual = Vector2D.angleBetween(a, c);
+        actual = Vector2D.shortestAngleBetween(a, c);
         assertEquals(3 * Math.PI / 4, actual, delta);
     }
     @Test

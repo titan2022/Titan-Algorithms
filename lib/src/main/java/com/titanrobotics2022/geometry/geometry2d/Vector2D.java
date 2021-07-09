@@ -21,7 +21,7 @@ public class Vector2D {
     /** The x component. */
     public final double x;
 
-    /** The y componenet. */
+    /** The y component. */
     public final double y;
 
     /**
@@ -123,13 +123,9 @@ public class Vector2D {
     {
         double mag2 = magnitudeSquared();
         if (mag2 == 0)
-        {
             return ZERO;
-        }
         else
-        {
             return scalarDivide(FastMath.sqrt(mag2));
-        }
     }
 
     /**
@@ -169,7 +165,7 @@ public class Vector2D {
      * @param v2
      * @return
      */
-    public static double angleBetween(Vector2D v1, Vector2D v2)
+    public static double shortestAngleBetween(Vector2D v1, Vector2D v2)
     {
         return FastMath.acos(v1.dot(v2) / (v1.magnitude() * v2.magnitude()));
     }
@@ -187,7 +183,8 @@ public class Vector2D {
     @Override
     public boolean equals(Object obj)
     {
-        if (obj instanceof Vector2D) {
+        if (obj instanceof Vector2D)
+        {
             final Vector2D rhs = (Vector2D) obj;
             return (x == rhs.x) && (y == rhs.y);
         }
