@@ -145,7 +145,7 @@ public class Vector2D {
      */
     public double cross(Vector2D rhs)
     {
-        return x * rhs.y - rhs.x * y;
+        return x * rhs.y -  y * rhs.x;
     }
 
     /**
