@@ -29,9 +29,8 @@ public interface Point<S extends Space> {
      */
     Point<S> plus(Vector<S> rhs);
 
-    // TODO: Decide if to add
     /** Get the space to which the point belongs.
      * @return containing space
      */
-    //Space getSpace();
+    Space getSpace();
 }
