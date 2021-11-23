@@ -8,6 +8,21 @@ public interface Point<S extends Space> {
      */
     boolean isNaN();
 
+    /**
+     * Computes the displacement of two points as a vector where the
+     * return vector is also the vector from rhs to lhs.
+     * @param rhs Right hand side point of pt - pt = vector.
+     * @return Vector displacement of rhs to lhs.
+     */
+    Vector<S> minus(Point<S> rhs);
+    
+    /**
+     * Computes a new point using a displacement vector for the implicit point.
+     * @param rhs Displacement vector.
+     * @return A point displaced from the original point.
+     */
+    Point<S> plus(Vector<S> rhs);
+
     // TODO: Decide if to add
     /** Get the space to which the point belongs.
      * @return containing space
