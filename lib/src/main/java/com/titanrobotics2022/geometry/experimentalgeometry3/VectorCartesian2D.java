@@ -4,10 +4,10 @@ import org.apache.commons.math3.util.FastMath;
 
 public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>, CoordinateSystem{
 
-    /** In the Caresian 2D space. */
+    /** In the Cartesian 2D space. */
     private static final CoordinateSystem coordinates = Cartesian2D.getInstance();
 
-    /** Origin (coordinates: 0, 0). */
+    /** Origin (coordinates: (0, 0)). */
     public static final VectorCartesian2D ZERO = new VectorCartesian2D(0, 0);
 
     /** A vector with all coordinates set to NaN. */
@@ -106,6 +106,20 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
     @Override
     public int getDimension() {
         return coordinates.getDimension();
+    }
+
+    /**
+     * 
+     */
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (obj instanceof VectorCartesian2D)
+        {
+            final VectorCartesian2D rhs = (VectorCartesian2D) obj;
+            return (x == rhs.x) && (y == rhs.y);
+        }
+        return false;
     }
 
     public static final class Cartesian2D implements CoordinateSystem

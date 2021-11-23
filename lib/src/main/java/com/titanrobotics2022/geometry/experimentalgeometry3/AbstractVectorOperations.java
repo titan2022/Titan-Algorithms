@@ -11,7 +11,7 @@ public interface AbstractVectorOperations<S extends CoordinateSystem> extends Ab
 
     S minus(S rhs);
 
-    S scalarMultiply(double a);
+    S scalarMultiply(double scalar);
 
     S negate();
 
