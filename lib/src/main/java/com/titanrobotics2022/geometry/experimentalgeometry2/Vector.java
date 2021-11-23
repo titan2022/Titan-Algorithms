@@ -11,7 +11,7 @@ public interface Vector<S extends Space> extends Point<S> {
 
     Vector<S> minus(Vector<S> rhs);
 
-    Vector<S> scalarMultiply(double scalar);
+    Vector<S> scalarMultiply(double scalar); //Scalar divide is not included as it is up to the user to check for zero division
 
     Vector<S> negate();
 
