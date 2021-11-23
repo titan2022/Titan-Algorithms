@@ -1,6 +1,6 @@
 package com.titanrobotics2022.geometry.experimentalgeometry;
 
-public class Cartesian3D implements CoordinateSystem, Vector3DOperation<Cartesian3D>, CoordinateTransformation<Spherical>, CoordinateTransformation<Cylinderical> {
+public class Cartesian3D implements CoordinateSystem, Vector3DOperation<Cartesian3D> {
     /** Origin (coordinates: 0, 0, 0). */
     public static final Cartesian3D ZERO = new Cartesian3D(0, 0, 0);
 
@@ -72,18 +72,6 @@ public class Cartesian3D implements CoordinateSystem, Vector3DOperation<Cartesia
 
     @Override
     public Cartesian3D projectOnto(Cartesian3D otherVec) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Cylinderical convertTo(Class<Cylinderical> coordinateSystem) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Spherical convertTo(Class<Spherical> coordinateSystem) {
         // TODO Auto-generated method stub
         return null;
     }
