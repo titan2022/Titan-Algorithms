@@ -9,6 +9,12 @@ public interface Point<S extends Space> {
     boolean isNaN();
 
     /**
+     * Returns true if any of the coordiantes are positive or negative infinity
+     * @return true if any of the coordiantes are positive or negative infinity
+     */
+    boolean isInfinite();
+
+    /**
      * Computes the displacement of two points as a vector where the
      * return vector is also the vector from rhs to lhs.
      * @param rhs Right hand side point of pt - pt = vector.

@@ -1,12 +1,6 @@
 package com.titanrobotics2022.geometry.experimentalgeometry2;
 
-public class VectorCartesian2D implements Vector<Cartesian2D> {
-
-    @Override
-    public boolean isNaN() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+public class VectorCartesian2D implements Vector2D<Cartesian2D> {
 
     @Override
     public Vector<Cartesian2D> getZero() {
@@ -63,9 +57,26 @@ public class VectorCartesian2D implements Vector<Cartesian2D> {
     }
 
     @Override
+    public boolean isNaN() {
+        // TODO Auto-generated method stub
+        return false;
+    }
+
+    @Override
     public boolean isInfinite() {
         // TODO Auto-generated method stub
         return false;
     }
-    
+
+    @Override
+    public Vector<Cartesian2D> minus(Point<Cartesian2D> rhs) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public double cross(Cartesian2D rhs) {
+        // TODO Auto-generated method stub
+        return 0;
+    }
 }

@@ -22,7 +22,4 @@ public interface Vector<S extends Space> extends Point<S> {
     Vector<S> unitVector();
 
     double dot(Vector<S> rhs);
-
-    boolean isInfinite();
-
 }
