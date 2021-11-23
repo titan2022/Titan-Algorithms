@@ -123,6 +123,5 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
         public int getDimension() {
             return 2;
         }
-
     }
 }

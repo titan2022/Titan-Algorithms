@@ -14,20 +14,21 @@ public interface AbstractPoint<S extends CoordinateSystem> {
      */
     boolean isInfinite();
 
+    // TODO: Decide if a minus and plus operation is needed for when designing point specific classes
     /**
      * Computes the displacement of two points as a vector where the
      * return vector is also the vector from rhs to lhs.
      * @param rhs Right hand side point of pt - pt = vector.
      * @return Vector displacement of rhs to lhs.
      */
-    S minus(S rhs);
+    //S minus(AbstractVectorOperations<S> rhs);
     
     /**
      * Computes a new point using a displacement vector for the implicit point.
      * @param rhs Displacement vector.
      * @return A point displaced from the original point.
      */
-    S plus(S rhs);
+    //S plus(AbstractVectorOperations<S> rhs);
 
     /** Get the space to which the point belongs.
      * @return containing space
