@@ -34,14 +34,12 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     @Override
     public VectorCartesian2D plus(VectorCartesian2D rhs) {
-        VectorCartesian2D rhs2 = (VectorCartesian2D) rhs;
-        return new VectorCartesian2D(x + rhs2.x, y + rhs2.y);
+        return new VectorCartesian2D(x + rhs.x, y + rhs.y);
     }
 
     @Override
     public VectorCartesian2D minus(VectorCartesian2D rhs) {
-        VectorCartesian2D rhs2 = (VectorCartesian2D) rhs;
-        return new VectorCartesian2D(x - rhs2.x, y - rhs2.y);
+        return new VectorCartesian2D(x - rhs.x, y - rhs.y);
     }
 
     @Override
@@ -75,14 +73,12 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     @Override
     public double dot(VectorCartesian2D rhs) {
-        VectorCartesian2D rhs2 = (VectorCartesian2D) rhs;
-        return x * rhs2.x + y * rhs2.y;
+        return x * rhs.x + y * rhs.y;
     }
 
     @Override
     public VectorCartesian2D projectOnto(VectorCartesian2D otherVec) {
-        VectorCartesian2D otherVec2 = (VectorCartesian2D) otherVec;
-        VectorCartesian2D unitVec = otherVec2.unitVector();
+        VectorCartesian2D unitVec = otherVec.unitVector();
         return unitVec.scalarMultiply(dot(unitVec));
     }
 
