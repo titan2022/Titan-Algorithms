@@ -109,8 +109,7 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
     @Override
     public double azimuthalAngle() {
-        // TODO Auto-generated method stub
-        return 0;
+        return this.lhsCartesian.azimuthalAngle();
     }
 
 	@Override
