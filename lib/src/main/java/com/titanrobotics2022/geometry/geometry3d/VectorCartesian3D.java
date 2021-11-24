@@ -1,4 +1,7 @@
-package com.titanrobotics2022.geometry.experimentalgeometry3;
+package com.titanrobotics2022.geometry.geometry3d;
+
+import com.titanrobotics2022.geometry.CoordinateSystem;
+import com.titanrobotics2022.geometry.Vector3DOperations;
 
 import org.apache.commons.math3.util.FastMath;
 
