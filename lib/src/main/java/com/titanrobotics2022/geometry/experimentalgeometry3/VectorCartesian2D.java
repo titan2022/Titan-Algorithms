@@ -122,6 +122,13 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
         return false;
     }
 
+    public VectorPolar toPolar()
+    {
+        double theta = FastMath.tanh(y / x);
+        double r = magnitude();
+        return new VectorPolar(r, theta);
+    }
+
     public static final class Cartesian2D implements CoordinateSystem
     {
         private static Cartesian2D instance = new Cartesian2D();
