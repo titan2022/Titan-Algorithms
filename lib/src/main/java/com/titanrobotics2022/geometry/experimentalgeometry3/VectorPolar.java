@@ -104,6 +104,12 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
         return this.lhsCartesian.projectOnto(rhsCartesian).toPolar();
 	}
 
+    @Override
+    public double azimuthalAngle() {
+        // TODO Auto-generated method stub
+        return 0;
+    }
+
 	@Override
 	public boolean isNaN() {
 		return Double.isNaN(r) || Double.isNaN(theta);
@@ -118,6 +124,13 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 	public CoordinateSystem getSpace() {
 		return coordinates;
 	}
+
+    @Override
+    public boolean equals(VectorPolar rhs, double tolerance)
+    {   
+        VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+        return lhsCartesian.equals(rhsCartesian, tolerance);
+    }
 
     @Override
 	public double cross(VectorPolar rhs) {

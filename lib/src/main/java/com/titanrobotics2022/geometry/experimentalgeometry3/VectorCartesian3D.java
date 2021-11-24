@@ -97,6 +97,14 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
     }
 
     @Override
+    public double azimuthalAngle() {
+        double answer = FastMath.atan2(y, x);
+        if (answer < 0)
+            answer += 2 * Math.PI;
+        return answer;
+    }
+
+    @Override
     public boolean isNaN() {
         return Double.isNaN(x) || Double.isNaN(y) || Double.isNaN(z);
     }
@@ -109,6 +117,13 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
     @Override
     public CoordinateSystem getSpace() {
         return coordinates;
+    }
+
+    @Override
+    public boolean equals(VectorCartesian3D rhs, double tolerance) {
+        return FastMath.abs(x - rhs.x) < tolerance
+            && FastMath.abs(y - rhs.y) < tolerance 
+            && FastMath.abs(z - rhs.z) < tolerance;
     }
 
     @Override

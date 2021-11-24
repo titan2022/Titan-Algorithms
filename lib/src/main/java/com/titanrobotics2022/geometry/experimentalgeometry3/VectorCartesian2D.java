@@ -83,6 +83,14 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
     }
 
     @Override
+    public double azimuthalAngle() {
+        double answer = FastMath.atan2(y, x);
+        if (answer < 0)
+            answer += 2 * Math.PI;
+        return answer;
+    }
+
+    @Override
     public boolean isNaN() {
         return Double.isNaN(x) || Double.isNaN(y);
     }
@@ -96,6 +104,11 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 	public CoordinateSystem getSpace() {
 		return coordinates;
 	}
+
+    @Override
+    public boolean equals(VectorCartesian2D rhs, double tolerance) {
+        return FastMath.abs(x - rhs.x) < tolerance && FastMath.abs(y - rhs.y) < tolerance;
+    }
 
     @Override
     public double cross(VectorCartesian2D rhs) {

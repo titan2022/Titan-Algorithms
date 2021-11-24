@@ -34,4 +34,12 @@ public interface AbstractPoint<S extends CoordinateSystem> {
      * @return containing space
      */
     CoordinateSystem getSpace();
+
+    /**
+     * Assert that two coordinates are equal with tolerance.
+     * @param rhs Coordinate to be compared to
+     * @param tolerance maximum difference between coordinates
+     * @return true if coordinates are within tolerance of each other
+     */
+    boolean equals(S rhs, double tolerance);
 }

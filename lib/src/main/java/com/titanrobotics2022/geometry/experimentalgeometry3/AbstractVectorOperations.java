@@ -24,4 +24,6 @@ public interface AbstractVectorOperations<S extends CoordinateSystem> extends Ab
     double dot(S rhs);
 
     S projectOnto(S targetVec);
+
+    double azimuthalAngle();
 }
