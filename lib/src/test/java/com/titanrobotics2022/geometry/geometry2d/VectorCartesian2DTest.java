@@ -120,21 +120,21 @@ public class VectorCartesian2DTest {
         actual = alongPositiveX.azimuthalAngle();
         assertEquals(0, actual, delta);
     }
-    // @Test
-    // void angleBetweenTest() // TODO: Implement when added to VectorCartesian2D class
-    // {
-    //     VectorCartesian2D a = new VectorCartesian2D(1, 1);
-    //     Vector2D b = new VectorCartesian2D(1, 0);
-    //     VectorCartesian2D c = new VectorCartesian2D(0, -1);
-    //     double actual = Vector2D.shortestAngleBetween(a, b);
-    //     assertEquals(Math.PI / 4, actual, delta);
-    //     actual = VectorCartesian2D.shortestAngleBetween(b, a);
-    //     assertEquals(Math.PI / 4, actual, delta);
-    //     actual = VectorCartesian2D.shortestAngleBetween(a, b.negate());
-    //     assertEquals(3 * Math.PI / 4, actual, delta);
-    //     actual = VectorCartesian2D.shortestAngleBetween(a, c);
-    //     assertEquals(3 * Math.PI / 4, actual, delta);
-    // }
+    @Test
+    void angleBetweenTest()
+    {
+        VectorCartesian2D a = new VectorCartesian2D(1, 1);
+        VectorCartesian2D b = new VectorCartesian2D(1, 0);
+        VectorCartesian2D c = new VectorCartesian2D(0, -1);
+        double actual = VectorCartesian2D.shortestAngleBetween(a, b);
+        assertEquals(Math.PI / 4, actual, delta);
+        actual = VectorCartesian2D.shortestAngleBetween(b, a);
+        assertEquals(Math.PI / 4, actual, delta);
+        actual = VectorCartesian2D.shortestAngleBetween(a, b.negate());
+        assertEquals(3 * Math.PI / 4, actual, delta);
+        actual = VectorCartesian2D.shortestAngleBetween(a, c);
+        assertEquals(3 * Math.PI / 4, actual, delta);
+    }
     @Test()
     void specialDoubleTypesTest()
     {
