@@ -138,6 +138,8 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
         return false;
     }
 
+    private final static double delta = 1e-15;
+
     public VectorPolar toPolar()
     {
         double rsquared = magnitudeSquared();
@@ -146,8 +148,10 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
         else
         {
             double theta = FastMath.atan2(y, x);
-            if(theta < 0)
+            if(theta < -delta)
                 theta += 2 * Math.PI;
+            else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
+                theta = 0;
             return new VectorPolar(FastMath.sqrt(rsquared), theta);
         }        
     }
