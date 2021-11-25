@@ -33,7 +33,7 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
     /**
      * Temporary cartesian version of the polar vector
-     * Should be removed once alternative methods for
+     * @implNote be removed once alternative methods for
      * all computations are found.
      */
     private final VectorCartesian2D lhsCartesian;
@@ -49,6 +49,14 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
         this.theta = theta;
         this.lhsCartesian = toCartesian2D();
     }
+
+    // Can be used to speed up initialization of vectors for lhsCartesian
+    // private VectorPolar(double r, double theta, VectorCartesian2D lhsCartesian)
+    // {
+    //     this.r = r;
+    //     this.theta = theta;
+    //     this.lhsCartesian = lhsCartesian;
+    // }
 
 	@Override
 	public VectorPolar getZero() {
