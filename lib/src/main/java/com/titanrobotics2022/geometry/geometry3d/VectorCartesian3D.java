@@ -174,6 +174,25 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
         }   
     }
 
+    public VectorSpherical toSpherical()
+    {
+        double rhosquared = magnitudeSquared();
+        if(rhosquared == 0)
+            return VectorSpherical.ZERO;
+        else
+        {
+            double theta = FastMath.atan2(y, x);
+            if(theta < -delta)
+                theta += 2 * Math.PI;
+            else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
+                theta = 0;
+
+            double rhoMag = FastMath.sqrt(rhosquared);
+            double phi = FastMath.acos(z / rhoMag);
+            return new VectorSpherical(rhoMag, theta, phi);
+        }
+    }
+
     public static double shortestAngleBetween(VectorCartesian3D v1, VectorCartesian3D v2)
     {
         double cosAngle = v1.dot(v2) / (v1.magnitude() * v2.magnitude());
