@@ -22,13 +22,13 @@ public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>,
     /** A vector with all coordinates set to negative infinity. */
     public static final VectorCylindrical NEGATIVE_INFINITY = new VectorCylindrical(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
     
-    /** The r component. */
+    /** The r component. (-inf, inf)*/
     public final double r;
 
-    /** The theta component. */
+    /** The theta component. [0,2PI)*/
     public final double theta;
 
-    /** The z component. */
+    /** The z component. (-inf, inf)*/
     public final double z;
 
     /**
