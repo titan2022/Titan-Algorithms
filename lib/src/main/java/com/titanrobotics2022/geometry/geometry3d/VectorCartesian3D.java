@@ -155,6 +155,25 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
         return false;
     }
 
+    private final static double delta = 1e-15;
+
+    public VectorCylindrical toCylindrical()
+    {
+        // Same implementation as polar but with added z component
+        double rsquared = magnitudeSquared();
+        if(rsquared == 0)
+            return VectorCylindrical.ZERO;
+        else
+        {
+            double theta = FastMath.atan2(y, x);
+            if(theta < -delta)
+                theta += 2 * Math.PI;
+            else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
+                theta = 0;
+            return new VectorCylindrical(FastMath.sqrt(rsquared), theta, z);
+        }   
+    }
+
     public static double shortestAngleBetween(VectorCartesian3D v1, VectorCartesian3D v2)
     {
         double cosAngle = v1.dot(v2) / (v1.magnitude() * v2.magnitude());
@@ -170,7 +189,7 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
 
     public static final class Cartesian3D implements CoordinateSystem
     {
-        private static Cartesian3D instance = new Cartesian3D();
+        private final static Cartesian3D instance = new Cartesian3D();
 
         private Cartesian3D(){}
 
