@@ -155,6 +155,13 @@ public class VectorSpherical implements Vector3DOperations<VectorSpherical>, Coo
         double z = rho * FastMath.cos(phi);
         return new VectorCartesian3D(x, y, z);
     }
+
+    public VectorCylindrical toCylindrical()
+    {
+        double r = rho * FastMath.sin(phi);
+        double z = rho * FastMath.cos(phi);
+        return new VectorCylindrical(r, theta, z);
+    }
     
     public static final class Spherical implements CoordinateSystem
     {
