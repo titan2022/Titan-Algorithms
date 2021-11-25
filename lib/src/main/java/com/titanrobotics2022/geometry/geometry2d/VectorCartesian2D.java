@@ -152,6 +152,19 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
         }        
     }
 
+    public static double shortestAngleBetween(VectorCartesian2D v1, VectorCartesian2D v2)
+    {
+        double cosAngle = v1.dot(v2) / (v1.magnitude() * v2.magnitude());
+
+        // result can exceed 1 due to roundoff error for nearly identical vectors
+        if (cosAngle > 1)
+            return 0;
+        else if (cosAngle < -1)
+            return Math.PI;
+        else
+            return FastMath.acos(cosAngle);
+    }
+
     public static final class Cartesian2D implements CoordinateSystem
     {
         private static Cartesian2D instance = new Cartesian2D();

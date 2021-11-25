@@ -155,6 +155,19 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
         return false;
     }
 
+    public static double shortestAngleBetween(VectorCartesian3D v1, VectorCartesian3D v2)
+    {
+        double cosAngle = v1.dot(v2) / (v1.magnitude() * v2.magnitude());
+
+        // result can exceed 1 due to roundoff error for nearly identical vectors
+        if (cosAngle > 1)
+            return 0;
+        else if (cosAngle < -1)
+            return Math.PI;
+        else
+            return FastMath.acos(cosAngle);
+    }
+
     public static final class Cartesian3D implements CoordinateSystem
     {
         private static Cartesian3D instance = new Cartesian3D();
