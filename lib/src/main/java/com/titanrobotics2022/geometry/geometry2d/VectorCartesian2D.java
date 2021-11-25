@@ -115,8 +115,7 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     @Override
     public double cross(VectorCartesian2D rhs) {
-        VectorCartesian2D rhs2 = (VectorCartesian2D) rhs;
-        return x * rhs2.y -  y * rhs2.x;
+        return x * rhs.y -  y * rhs.x;
     }
 
     @Override
@@ -171,7 +170,7 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     public static final class Cartesian2D implements CoordinateSystem
     {
-        private static Cartesian2D instance = new Cartesian2D();
+        private final static Cartesian2D instance = new Cartesian2D();
 
         private Cartesian2D(){}
 

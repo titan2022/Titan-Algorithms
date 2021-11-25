@@ -65,13 +65,13 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
 	@Override
 	public VectorPolar plus(VectorPolar rhs) {
-		VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+		VectorCartesian2D rhsCartesian = rhs.lhsCartesian;
         return this.lhsCartesian.plus(rhsCartesian).toPolar();
 	}
 
 	@Override
 	public VectorPolar minus(VectorPolar rhs) {
-		VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+		VectorCartesian2D rhsCartesian = rhs.lhsCartesian;
         return this.lhsCartesian.minus(rhsCartesian).toPolar();
 	}
 
@@ -105,13 +105,13 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
 	@Override
 	public double dot(VectorPolar rhs) {
-		VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+		VectorCartesian2D rhsCartesian = rhs.lhsCartesian;
         return this.lhsCartesian.dot(rhsCartesian);
 	}
 
 	@Override
 	public VectorPolar projectOnto(VectorPolar targetVec) {
-		VectorCartesian2D rhsCartesian = targetVec.toCartesian2D();
+		VectorCartesian2D rhsCartesian = targetVec.lhsCartesian;
         return this.lhsCartesian.projectOnto(rhsCartesian).toPolar();
 	}
 
@@ -138,13 +138,13 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
     @Override
     public boolean equals(VectorPolar rhs, double tolerance)
     {   
-        VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+        VectorCartesian2D rhsCartesian = rhs.lhsCartesian;
         return lhsCartesian.equals(rhsCartesian, tolerance);
     }
 
     @Override
 	public double cross(VectorPolar rhs) {
-		VectorCartesian2D rhsCartesian = rhs.toCartesian2D();
+		VectorCartesian2D rhsCartesian = rhs.lhsCartesian;
         return this.lhsCartesian.cross(rhsCartesian);
 	}
 
@@ -167,7 +167,7 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
     public static final class Polar implements CoordinateSystem
     {
-        private static Polar instance = new Polar();
+        private final static Polar instance = new Polar();
 
         private Polar(){}
 
