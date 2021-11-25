@@ -140,9 +140,16 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     public VectorPolar toPolar()
     {
-        double theta = FastMath.tanh(y / x);
-        double r = magnitude();
-        return new VectorPolar(r, theta);
+        double rsquared = magnitudeSquared();
+        if(rsquared == 0)
+            return VectorPolar.ZERO;
+        else
+        {
+            double theta = FastMath.atan2(y, x);
+            if(theta < 0)
+                theta += 2 * Math.PI;
+            return new VectorPolar(FastMath.sqrt(rsquared), theta);
+        }        
     }
 
     public static final class Cartesian2D implements CoordinateSystem
