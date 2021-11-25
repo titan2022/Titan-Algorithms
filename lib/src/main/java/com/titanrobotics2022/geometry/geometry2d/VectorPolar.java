@@ -142,9 +142,14 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
     public VectorCartesian2D toCartesian2D()
     {
-        double x = r * FastMath.cos(theta);
-        double y = r * FastMath.sin(theta);
-        return new VectorCartesian2D(x, y);
+        if(r == 0)
+            return VectorCartesian2D.ZERO;
+        else
+        {
+            double x = r * FastMath.cos(theta);
+            double y = r * FastMath.sin(theta);
+            return new VectorCartesian2D(x, y);
+        }
     }
 
 	@Override
