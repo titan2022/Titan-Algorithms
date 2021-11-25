@@ -154,6 +154,14 @@ public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>,
         double y = r * FastMath.sin(theta);
         return new VectorCartesian3D(x, y, z);
     }
+
+    // From: https://math.libretexts.org/Bookshelves/Calculus/Book%3A_Calculus_(OpenStax)/12%3A_Vectors_in_Space/12.7%3A_Cylindrical_and_Spherical_Coordinates
+    public VectorSpherical toSpherical()
+    {
+        double rho = FastMath.sqrt(r * r + z * z);
+        double phi = FastMath.acos(z / rho);
+        return new VectorSpherical(rho, theta, phi);
+    }
     
     public static final class Cylindrical implements CoordinateSystem
     {
