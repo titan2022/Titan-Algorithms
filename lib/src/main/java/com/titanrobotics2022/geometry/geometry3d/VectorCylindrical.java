@@ -76,7 +76,7 @@ public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>,
 
     @Override
     public VectorCylindrical negate() {
-        return new VectorCylindrical(r, (theta + Math.PI) % (2 * Math.PI), z);
+        return new VectorCylindrical(r, (theta + Math.PI) % (2 * Math.PI), -z);
     }
 
     @Override
@@ -95,7 +95,7 @@ public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>,
         if (mag2 == 0)
             return ZERO;
         else
-            return scalarMultiply(Math.copySign(1, r) / FastMath.sqrt(mag2));
+            return scalarMultiply(1 / FastMath.sqrt(mag2));
     }
 
     @Override
