@@ -25,7 +25,7 @@ public class LineSegment2D {
 
     /**
      * Determines if implicit line segment is intersected by the explicit line segment.
-     * Colinear and overlapping line segments are considered to be intersecting.
+     * Colinear (parallel) and overlapping line segments are considered to be intersecting.
      * 
      * @implNote From https://stackoverflow.com/questions/3838329/how-can-i-check-if-two-segments-intersect
      * 
