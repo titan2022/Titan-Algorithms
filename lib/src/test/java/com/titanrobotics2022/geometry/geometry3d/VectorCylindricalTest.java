@@ -164,7 +164,7 @@ public class VectorCylindricalTest {
     void dimensionsTest()
     {
         VectorCylindrical a = new VectorCylindrical(0, 0, 0);
-        assertEquals(2, a.getDimension());
+        assertEquals(3, a.getDimension());
     }
     @Test
     void equalsTest()
@@ -175,39 +175,51 @@ public class VectorCylindricalTest {
         VectorCylindrical twoes = new VectorCylindrical(y, y, y);
         assertTrue(ones.equals(ones2, delta));
         assertFalse(ones.equals(twoes, delta));
-
-        VectorCylindrical positiveR = new VectorCylindrical(1, Math.PI / 4.0, 0);
-        VectorCylindrical negativeR = new VectorCylindrical(-1, (Math.PI / 4.0) + Math.PI, 0);
-        assertTrue(positiveR.equals(negativeR, delta));
     }
-    // @Test
-    // void toCartesianTransformTest()
-    // {
-    //     double r = FastMath.sqrt(1 + 1);
-    //     VectorCartesian2D quadrant1 = new VectorCylindrical(r, Math.PI / 4.0).toCartesian2D();
-    //     VectorCartesian2D quadrant2 = new VectorCylindrical(r, 3 * Math.PI / 4.0).toCartesian2D();
-    //     VectorCartesian2D quadrant3 = new VectorCylindrical(r, 5 * Math.PI / 4.0).toCartesian2D();
-    //     VectorCartesian2D quadrant4 = new VectorCylindrical(r, 7 * Math.PI / 4.0).toCartesian2D();        
-    //     VectorCartesian2D quadrant1Expected = new VectorCartesian2D(1, 1);
-    //     VectorCartesian2D quadrant2Expected = new VectorCartesian2D(-1, 1);
-    //     VectorCartesian2D quadrant3Expected = new VectorCartesian2D(-1, -1);
-    //     VectorCartesian2D quadrant4Expected = new VectorCartesian2D(1, -1);
+    @Test
+    void toCartesianTransformTest()
+    {
+        // Positive z octants
+        double r = FastMath.sqrt(1 + 1);
+        VectorCartesian3D octantPos1 = new VectorCylindrical(r, Math.PI / 4.0, 1).toCartesian3D();
+        VectorCartesian3D octantPos2 = new VectorCylindrical(r, 3 * Math.PI / 4.0, 1).toCartesian3D();
+        VectorCartesian3D octantPos3 = new VectorCylindrical(r, 5 * Math.PI / 4.0, 1).toCartesian3D();
+        VectorCartesian3D octantPos4 = new VectorCylindrical(r, 7 * Math.PI / 4.0, 1).toCartesian3D();        
+        VectorCartesian3D octantPos1Expected = new VectorCartesian3D(1, 1, 1);
+        VectorCartesian3D octantPos2Expected = new VectorCartesian3D(-1, 1, 1);
+        VectorCartesian3D octantPos3Expected = new VectorCartesian3D(-1, -1, 1);
+        VectorCartesian3D octantPos4Expected = new VectorCartesian3D(1, -1, 1);
         
-    //     assertTrue(quadrant1.equals(quadrant1Expected, delta));
-    //     assertTrue(quadrant2.equals(quadrant2Expected, delta));
-    //     assertTrue(quadrant3.equals(quadrant3Expected, delta));
-    //     assertTrue(quadrant4.equals(quadrant4Expected, delta));
+        assertTrue(octantPos1.equals(octantPos1Expected, delta));
+        assertTrue(octantPos2.equals(octantPos2Expected, delta));
+        assertTrue(octantPos3.equals(octantPos3Expected, delta));
+        assertTrue(octantPos4.equals(octantPos4Expected, delta));
 
-    //     //Edge Cases
-    //     VectorCartesian2D zeroRadians = new VectorCylindrical(1, 0).toCartesian2D();
-    //     assertEquals(1, zeroRadians.x, delta);
-    //     assertEquals(0, zeroRadians.y, delta);
+        // Negative z octants
+        VectorCartesian3D octantNeg1 = new VectorCylindrical(r, Math.PI / 4.0, -1).toCartesian3D();
+        VectorCartesian3D octantNeg2 = new VectorCylindrical(r, 3 * Math.PI / 4.0, -1).toCartesian3D();
+        VectorCartesian3D octantNeg3 = new VectorCylindrical(r, 5 * Math.PI / 4.0, -1).toCartesian3D();
+        VectorCartesian3D octantNeg4 = new VectorCylindrical(r, 7 * Math.PI / 4.0, -1).toCartesian3D();        
+        VectorCartesian3D octantNeg1Expected = new VectorCartesian3D(1, 1, -1);
+        VectorCartesian3D octantNeg2Expected = new VectorCartesian3D(-1, 1, -1);
+        VectorCartesian3D octantNeg3Expected = new VectorCartesian3D(-1, -1, -1);
+        VectorCartesian3D octantNeg4Expected = new VectorCartesian3D(1, -1, -1);
+        
+        assertTrue(octantNeg1.equals(octantNeg1Expected, delta));
+        assertTrue(octantNeg2.equals(octantNeg2Expected, delta));
+        assertTrue(octantNeg3.equals(octantNeg3Expected, delta));
+        assertTrue(octantNeg4.equals(octantNeg4Expected, delta));
 
-    //     VectorCartesian2D zeroCartesianVector = new VectorCylindrical(0, 0).toCartesian2D();
-    //     assertTrue(zeroCartesianVector == VectorCartesian2D.ZERO); // Checking Object References
-    //     zeroCartesianVector = new VectorCylindrical(0, Math.PI).toCartesian2D();
-    //     assertTrue(zeroCartesianVector == VectorCartesian2D.ZERO);
-    // }
+        //Edge Cases
+        VectorCartesian3D zeroRadians = new VectorCylindrical(1, 0, 0).toCartesian3D();
+        assertEquals(1, zeroRadians.x, delta);
+        assertEquals(0, zeroRadians.y, delta);
+
+        VectorCartesian3D zeroCartesianVector = new VectorCylindrical(0, 0, 0).toCartesian3D();
+        assertEquals(zeroCartesianVector, VectorCartesian3D.ZERO);
+        zeroCartesianVector = new VectorCylindrical(0, Math.PI, 0).toCartesian3D();
+        assertEquals(zeroCartesianVector, VectorCartesian3D.ZERO);
+    }
     @Test
     void equalsWithToleranceTest()
     {
