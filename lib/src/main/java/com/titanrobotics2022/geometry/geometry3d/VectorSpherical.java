@@ -22,17 +22,25 @@ public class VectorSpherical implements Vector3DOperations<VectorSpherical>, Coo
     /** A vector with all coordinates set to negative infinity. */
     public static final VectorSpherical NEGATIVE_INFINITY = new VectorSpherical(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
     
-    /** The rho component. */
+    /** The rho component.
+     *  Domain: (0, inf)
+     *  @implNote rho is positive as set will be bijective
+     *  similar to polar coordinates (https://math.stackexchange.com/a/1737911)
+     */
     public final double rho;
 
-    /** The theta component. */
+    /** The theta component.
+     *  Domain: [0, 2PI)
+     */
     public final double theta;
 
-    /** The z component. */
+    /** The phi component.
+     *  Domain: [0, PI)
+     */
     public final double phi;
 
     /**
-     * Temporary cartesian version of the cylindrical vector
+     * Temporary cartesian version of the spherical vector
      * @implNote be removed once alternative methods for
      * computations are found.
      */
@@ -81,12 +89,12 @@ public class VectorSpherical implements Vector3DOperations<VectorSpherical>, Coo
 
     @Override
     public double magnitude() {
-        return rho;
+        return FastMath.abs(rho);
     }
 
     @Override
     public double magnitudeSquared() {
-        return FastMath.sqrt(rho);
+        return FastMath.sqrt(FastMath.abs(rho));
     }
 
     @Override

@@ -21,8 +21,10 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
     /** A vector with all coordinates set to negative infinity. */
     public static final VectorPolar NEGATIVE_INFINITY = new VectorPolar(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
 
-    /** Radius is the distance from the pole.
-     *  Domain: (-inf, inf)
+    /**
+     *  Radius is the distance from the pole.
+     *  Domain: [0, inf)
+     *  @implNote r is positive as set will be bijective (https://math.stackexchange.com/a/1737911)
      */
     public final double r;
     
@@ -87,12 +89,12 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
 	@Override
 	public double magnitude() {
-		return Math.abs(r);
+		return FastMath.abs(r);
 	}
 
 	@Override
 	public double magnitudeSquared() {
-		return FastMath.sqrt(Math.abs(r));
+		return FastMath.sqrt(FastMath.abs(r));
 	}
 
 	@Override
@@ -100,7 +102,7 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
         if (r == 0)
             return ZERO;
         else
-            return new VectorPolar(Math.copySign(1, r), theta);
+            return new VectorPolar(FastMath.copySign(1, r), theta);
 	}
 
 	@Override

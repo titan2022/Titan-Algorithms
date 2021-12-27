@@ -22,7 +22,11 @@ public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>,
     /** A vector with all coordinates set to negative infinity. */
     public static final VectorCylindrical NEGATIVE_INFINITY = new VectorCylindrical(Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY, Double.NEGATIVE_INFINITY);
     
-    /** The r component. (-inf, inf)*/
+    /**
+     *  Radius is the distance from the pole.
+     *  Domain: [0, inf)
+     *  @implNote r is positive as set will be bijective (https://math.stackexchange.com/a/1737911)
+     */
     public final double r;
 
     /** The theta component. [0,2PI)*/
