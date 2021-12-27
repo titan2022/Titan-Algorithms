@@ -160,8 +160,8 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
     public VectorCylindrical toCylindrical()
     {
         // Same implementation as polar but with added z component
-        double rsquared = magnitudeSquared();
-        if(rsquared == 0)
+        double rsquaredForTheta = x * x + y * y;
+        if(rsquaredForTheta == 0)
             return VectorCylindrical.ZERO;
         else
         {
@@ -170,7 +170,7 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
                 theta += 2 * Math.PI;
             else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
                 theta = 0;
-            return new VectorCylindrical(FastMath.sqrt(rsquared), theta, z);
+            return new VectorCylindrical(FastMath.sqrt(rsquaredForTheta), theta, z);
         }   
     }
 
