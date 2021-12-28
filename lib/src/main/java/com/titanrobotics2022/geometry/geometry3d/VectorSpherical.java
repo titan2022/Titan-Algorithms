@@ -35,7 +35,7 @@ public class VectorSpherical implements Vector3DOperations<VectorSpherical>, Coo
     public final double theta;
 
     /** The phi component.
-     *  Domain: [0, PI)
+     *  Domain: [0, PI]
      */
     public final double phi;
 
@@ -94,7 +94,7 @@ public class VectorSpherical implements Vector3DOperations<VectorSpherical>, Coo
 
     @Override
     public double magnitudeSquared() {
-        return FastMath.sqrt(FastMath.abs(rho));
+        return rho * rho;
     }
 
     @Override

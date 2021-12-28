@@ -73,7 +73,7 @@ public class VectorPolarTest {
     {
         VectorPolar a = new VectorPolar(2, 2);
         double actual = a.magnitudeSquared();
-        assertEquals(FastMath.sqrt(2), actual, delta); 
+        assertEquals(2 * 2, actual, delta); 
     }
     @Test
     void unitVectorTest()

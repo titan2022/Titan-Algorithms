@@ -94,7 +94,7 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
 
 	@Override
 	public double magnitudeSquared() {
-		return FastMath.sqrt(FastMath.abs(r));
+		return r * r;
 	}
 
 	@Override
