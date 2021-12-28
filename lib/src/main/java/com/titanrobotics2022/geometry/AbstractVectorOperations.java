@@ -47,13 +47,13 @@ public interface AbstractVectorOperations<S extends CoordinateSystem> extends Ab
     S negate();
 
     /**
-     *  The geometric length of the vector.
+     *  The geometric/euclidean norm of the vector.
      *  @return The geometric length of the vector.
      */
     double magnitude();
 
     /**
-     *  The geometric length of the vector squared.
+     *  The geometric/euclidean norm of the vector squared.
      *  @implNote Should be implemented without squaring the magnitude to optimize execution.
      *  <p>Ex: Cartesian2D magnitude squared = x * x + y * y.
      *  @return The geometric length of the vector squared.
