@@ -181,11 +181,17 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
             return VectorSpherical.ZERO;
         else
         {
-            double theta = FastMath.atan2(y, x);
-            if(theta < -delta)
-                theta += 2 * Math.PI;
-            else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
+            double theta;
+            if(x * x + y * y < delta)
                 theta = 0;
+            else
+            {
+                theta = FastMath.atan2(y, x);
+                if(theta < -delta)
+                    theta += 2 * Math.PI;
+                else if(theta < delta) // Sets theta to be 0 exactly, theta was previous evaluated to be greater than negative delta
+                    theta = 0;
+            }
 
             double rhoMag = FastMath.sqrt(rhosquared);
             double phi = FastMath.acos(z / rhoMag);
