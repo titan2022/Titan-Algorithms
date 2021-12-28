@@ -170,6 +170,75 @@ public class VectorCartesian3DTest {
         assertEquals(false, ones.equals(twoes));
     }
     @Test
+    void convertToCylindricalTest()
+    {
+        // Positive z octants
+        double r = FastMath.sqrt(1 + 1);
+        VectorCylindrical octantPos1Expected = new VectorCartesian3D(1, 1, 1).toCylindrical();
+        VectorCylindrical octantPos2Expected = new VectorCartesian3D(-1, 1, 1).toCylindrical();
+        VectorCylindrical octantPos3Expected = new VectorCartesian3D(-1, -1, 1).toCylindrical();
+        VectorCylindrical octantPos4Expected = new VectorCartesian3D(1, -1, 1).toCylindrical();
+        VectorCylindrical octantPos1 = new VectorCylindrical(r, Math.PI / 4.0, 1);
+        VectorCylindrical octantPos2 = new VectorCylindrical(r, 3 * Math.PI / 4.0, 1);
+        VectorCylindrical octantPos3 = new VectorCylindrical(r, 5 * Math.PI / 4.0, 1);
+        VectorCylindrical octantPos4 = new VectorCylindrical(r, 7 * Math.PI / 4.0, 1);
+        
+        assertTrue(octantPos1.equals(octantPos1Expected, delta));
+        assertTrue(octantPos2.equals(octantPos2Expected, delta));
+        assertTrue(octantPos3.equals(octantPos3Expected, delta));
+        assertTrue(octantPos4.equals(octantPos4Expected, delta));
+
+        // Negative z octants
+        VectorCylindrical octantNeg1Expected = new VectorCartesian3D(1, 1, -1).toCylindrical();
+        VectorCylindrical octantNeg2Expected = new VectorCartesian3D(-1, 1, -1).toCylindrical();
+        VectorCylindrical octantNeg3Expected = new VectorCartesian3D(-1, -1, -1).toCylindrical();
+        VectorCylindrical octantNeg4Expected = new VectorCartesian3D(1, -1, -1).toCylindrical();
+        VectorCylindrical octantNeg1 = new VectorCylindrical(r, Math.PI / 4.0, -1);
+        VectorCylindrical octantNeg2 = new VectorCylindrical(r, 3 * Math.PI / 4.0, -1);
+        VectorCylindrical octantNeg3 = new VectorCylindrical(r, 5 * Math.PI / 4.0, -1);
+        VectorCylindrical octantNeg4 = new VectorCylindrical(r, 7 * Math.PI / 4.0, -1);        
+        
+        assertTrue(octantNeg1.equals(octantNeg1Expected, delta));
+        assertTrue(octantNeg2.equals(octantNeg2Expected, delta));
+        assertTrue(octantNeg3.equals(octantNeg3Expected, delta));
+        assertTrue(octantNeg4.equals(octantNeg4Expected, delta));
+    }
+    @Test
+    void convertToSphericalTest()
+    {
+        // Positive z octants
+        double r = FastMath.sqrt(1 + 1 + 1);
+        double phi = Math.PI / 2 - Math.atan(1 / Math.sqrt(2));
+        VectorSpherical octantPos1Expected = new VectorCartesian3D(1, 1, 1).toSpherical();
+        VectorSpherical octantPos2Expected = new VectorCartesian3D(-1, 1, 1).toSpherical();
+        VectorSpherical octantPos3Expected = new VectorCartesian3D(-1, -1, 1).toSpherical();
+        VectorSpherical octantPos4Expected = new VectorCartesian3D(1, -1, 1).toSpherical();
+        VectorSpherical octantPos1 = new VectorSpherical(r, Math.PI / 4, phi);
+        VectorSpherical octantPos2 = new VectorSpherical(r, 3 * Math.PI / 4, phi);
+        VectorSpherical octantPos3 = new VectorSpherical(r, 5 * Math.PI / 4, phi);
+        VectorSpherical octantPos4 = new VectorSpherical(r, 7 *Math.PI / 4, phi);
+        
+        assertTrue(octantPos1.equals(octantPos1Expected, delta));
+        assertTrue(octantPos2.equals(octantPos2Expected, delta));
+        assertTrue(octantPos3.equals(octantPos3Expected, delta));
+        assertTrue(octantPos4.equals(octantPos4Expected, delta));
+
+        // Negative z octants
+        VectorSpherical octantNeg1Expected = new VectorCartesian3D(1, 1, -1).toSpherical();
+        VectorSpherical octantNeg2Expected = new VectorCartesian3D(-1, 1, -1).toSpherical();
+        VectorSpherical octantNeg3Expected = new VectorCartesian3D(-1, -1, -1).toSpherical();
+        VectorSpherical octantNeg4Expected = new VectorCartesian3D(1, -1, -1).toSpherical();
+        VectorSpherical octantNeg1 = new VectorSpherical(r, Math.PI / 4.0, Math.PI - phi);
+        VectorSpherical octantNeg2 = new VectorSpherical(r, 3 * Math.PI / 4.0, Math.PI - phi);
+        VectorSpherical octantNeg3 = new VectorSpherical(r, 5 * Math.PI / 4.0, Math.PI - phi);
+        VectorSpherical octantNeg4 = new VectorSpherical(r, 7 * Math.PI / 4.0, Math.PI - phi);        
+        
+        assertTrue(octantNeg1.equals(octantNeg1Expected, delta));
+        assertTrue(octantNeg2.equals(octantNeg2Expected, delta));
+        assertTrue(octantNeg3.equals(octantNeg3Expected, delta));
+        assertTrue(octantNeg4.equals(octantNeg4Expected, delta));
+    }
+    @Test
     void equalsWithToleranceTest()
     {
         final double x = Math.PI, y = Math.E;
