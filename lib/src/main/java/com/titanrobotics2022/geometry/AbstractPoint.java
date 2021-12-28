@@ -1,8 +1,8 @@
 package com.titanrobotics2022.geometry;
 
 /**
- * Represents a generic geometric point.
- * @param <S> Type of the coordinate system that the point is defined by.
+ *  Represents a generic geometric point.
+ *  @param <S> Type of the coordinate system that the point is defined by.
  */
 public interface AbstractPoint<S extends CoordinateSystem> {
 
