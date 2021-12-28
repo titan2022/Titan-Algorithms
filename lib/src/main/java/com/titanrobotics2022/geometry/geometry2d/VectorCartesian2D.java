@@ -205,9 +205,9 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     /**
      *  Converts a Cartesian 2D vector into a Polar vector (r, theta (radians)).
-     *  @return The polar representation of the Cartesian 2D vector.
+     *  @return The Polar representation of the Cartesian 2D vector.
      *  If the Cartesian 2D vector is (0,0), then the returning
-     *  vector will point along the polar pole (theta = 0 radians). 
+     *  vector will point along the Polar pole (theta = 0 radians). 
      */
     public VectorPolar toPolar()
     {
