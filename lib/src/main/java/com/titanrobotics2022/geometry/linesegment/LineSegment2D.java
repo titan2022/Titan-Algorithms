@@ -1,24 +1,23 @@
 package com.titanrobotics2022.geometry.linesegment;
 
 import com.titanrobotics2022.Range;
-
-import org.apache.commons.math3.geometry.euclidean.twod.Vector2D;
+import com.titanrobotics2022.geometry.geometry2d.VectorCartesian2D;
 
 public class LineSegment2D {
-    private Vector2D start, end;
+    private VectorCartesian2D start, end;
 
-    public LineSegment2D(Vector2D start, Vector2D end)
+    public LineSegment2D(VectorCartesian2D start, VectorCartesian2D end)
     {
         this.start = start;
         this.end = end;
     }
 
-    public Vector2D getStart()
+    public VectorCartesian2D getStart()
     {
         return start;
     }
 
-    public Vector2D getEnd()
+    public VectorCartesian2D getEnd()
     {
         return end;
     }
@@ -35,8 +34,8 @@ public class LineSegment2D {
      */
     public boolean intersects(LineSegment2D otherSegment, boolean openInterval)
     {
-        Range<Double> interval1 = new Range<Double>(Math.min(start.getX(), end.getX()), Math.max(start.getX(), end.getX()));
-        Range<Double> interval2 = new Range<Double>(Math.min(otherSegment.getStart().getX(), otherSegment.getEnd().getX()), Math.max(otherSegment.getStart().getX(),otherSegment.getEnd().getX()));
+        Range<Double> interval1 = new Range<Double>(Math.min(start.x, end.x), Math.max(start.x, end.x));
+        Range<Double> interval2 = new Range<Double>(Math.min(otherSegment.getStart().x, otherSegment.getEnd().x), Math.max(otherSegment.getStart().x,otherSegment.getEnd().x));
 
         double xAMin = Math.max(interval1.getMin(), interval2.getMin());
         double xAMax = Math.min(interval1.getMax(), interval2.getMax());
@@ -53,14 +52,14 @@ public class LineSegment2D {
                 return false;
         }
 
-        double line1Slope = (start.getY() - end.getY()) / (start.getX() - end.getX());
-        double line2Slope = (otherSegment.getStart().getY() - otherSegment.getEnd().getY()) / (otherSegment.getStart().getX() - otherSegment.getEnd().getX());
+        double line1Slope = (start.y - end.y) / (start.x - end.x);
+        double line2Slope = (otherSegment.getStart().y - otherSegment.getEnd().y) / (otherSegment.getStart().x - otherSegment.getEnd().x);
 
         if (line1Slope == line2Slope)
             return false; // Parallel segments
 
-        double line1YIntercept = start.getY() - line1Slope * start.getX();
-        double line2YIntercept = otherSegment.getStart().getY() - line2Slope * otherSegment.getStart().getX();
+        double line1YIntercept = start.y - line1Slope * start.x;
+        double line2YIntercept = otherSegment.getStart().y - line2Slope * otherSegment.getStart().x;
 
         double Xa = (line2YIntercept - line1YIntercept) / (line1Slope - line2Slope);
         if (intervalA.contains(Xa, openInterval))
