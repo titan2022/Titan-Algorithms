@@ -10,6 +10,7 @@ import org.apache.commons.math3.util.FastMath;
  *  The pole is at 0 theta (radians).
  *  This Spherical vector is bijective (injective and surjective) such that there is a unique
  *  Spherical vector for each point in 3D space.
+ *  @see https://tutorial.math.lamar.edu/classes/calcii/sphericalcoords.aspx
  */
 public class VectorSpherical implements Vector3DOperations<VectorSpherical>, CoordinateSystem{
 

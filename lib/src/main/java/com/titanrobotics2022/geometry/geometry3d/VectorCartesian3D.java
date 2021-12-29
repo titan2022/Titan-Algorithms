@@ -220,7 +220,8 @@ public class VectorCartesian3D implements Vector3DOperations<VectorCartesian3D>,
      *  Converts a Cartesian 3D vector into a Cylindrical vector (r, theta (radians), z).
      *  @return The Cylindrical representation of the Cartesian 3D vector.
      *  If the Cartesian 3D vector is (0,0,0), then the returning
-     *  vector will point along the Polar subvector pole (theta = 0 radians). 
+     *  vector will point along the Polar subvector pole (theta = 0 radians).
+     *  @see https://tutorial.math.lamar.edu/Classes/CalcII/3DCoords.aspx
      */
     public VectorCylindrical toCylindrical()
     {

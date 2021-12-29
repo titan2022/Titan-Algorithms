@@ -10,6 +10,7 @@ import org.apache.commons.math3.util.FastMath;
  *  The pole is at 0 theta (radians).
  *  This Cylindrical vector is bijective (injective and surjective) such that there is a unique
  *  Cylindrical vector for each point in 3D space.
+ *  @see https://tutorial.math.lamar.edu/Classes/CalcII/CylindricalCoords.aspx
  */
 public class VectorCylindrical implements Vector3DOperations<VectorCylindrical>, CoordinateSystem{
 
