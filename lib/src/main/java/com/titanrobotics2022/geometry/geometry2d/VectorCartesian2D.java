@@ -110,7 +110,7 @@ public class VectorCartesian2D implements Vector2DOperations<VectorCartesian2D>,
 
     /**
      *  {@inheritDoc}
-     *  <p>result = sum(ai * bi) from i to 3, i = 0
+     *  <p>result = sum(ai * bi) from i to 2, i = 1
      */
     @Override
     public double dot(VectorCartesian2D rhs) {
