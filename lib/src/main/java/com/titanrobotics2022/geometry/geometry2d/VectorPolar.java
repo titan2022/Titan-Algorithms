@@ -243,8 +243,8 @@ public class VectorPolar implements Vector2DOperations<VectorPolar>, CoordinateS
      *  A singleton class representing the Polar coordinate system.
      *  Coordinates are (r, theta).
      *  The pole is at 0 theta.
-     *  r is the radius, Domain: [0, inf)
-     *  theta is the polar angle, Domain: [0, 2PI)
+     *  r is the radius, Domain: [0, inf).
+     *  theta is the polar angle, Domain: [0, 2PI).
      */
     public static final class Polar implements CoordinateSystem
     {
