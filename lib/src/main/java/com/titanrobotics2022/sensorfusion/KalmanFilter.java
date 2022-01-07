@@ -34,4 +34,59 @@ public class KalmanFilter {
     public KalmanFilter(int degree) {
         this(degree, 0.0);
     }
+
+    public void set(int degree, SimpleMatrix mean, SimpleMatrix cov, double time) {
+        means[degree].set(mean);
+        covs[degree].set(cov);
+        lastUpdated[degree] = time;
+    }
+
+    public SimpleMatrix[] getFullPred(int degree, double time) {
+        SimpleMatrix mean = means[degree].copy();
+        SimpleMatrix cov = covs[degree].copy();
+        double coef;
+        double fact = 1;
+        for(int i=degree+1; i<means.length; i++){
+            fact *= i;
+            coef = Math.pow(time - lastUpdated[i], i-degree) / fact;
+            mean = mean.plus(means[i].scale(coef));
+            cov = cov.plus(covs[i].scale(coef));
+        }
+        return new SimpleMatrix[]{mean, cov};
+    }
+    public SimpleMatrix[] getFullPred(double time) {
+        return getFullPred(0, time);
+    }
+    public SimpleMatrix getPred(int degree, double time) {
+        SimpleMatrix pred = means[degree].copy();
+        double coef;
+        double fact = 1;
+        for(int i=degree+1; i<means.length; i++){
+            fact *= i;
+            coef = Math.pow(time - lastUpdated[i], i-degree) / fact;
+            pred = pred.plus(means[i].scale(coef));
+        }
+        return pred;
+    }
+    public SimpleMatrix getPred(double time) {
+        return getPred(0, time);
+    }
+    public SimpleMatrix getPredCov(int degree, double time) {
+        SimpleMatrix predCov = covs[degree].copy();
+        double coef;
+        double fact = 1;
+        for(int i=degree+1; i<covs.length; i++){
+            fact *= i;
+            coef = Math.pow(time - lastUpdated[i], i-degree) / fact;
+            predCov = predCov.plus(covs[i].scale(coef));
+        }
+        return predCov;
+    }
+    public SimpleMatrix getPredCov(double time) {
+        return getPredCov(0, time);
+    }
+
+    public double getLastUpdated(int degree) {
+        return lastUpdated[degree];
+    }
 }
