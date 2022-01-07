@@ -89,4 +89,16 @@ public class KalmanFilter {
     public double getLastUpdated(int degree) {
         return lastUpdated[degree];
     }
+
+    public SimpleMatrix update(int degree, SimpleMatrix obs, SimpleMatrix prec, double time) {
+        if(time < lastUpdated[degree])
+            return null;
+        SimpleMatrix[] prior = getFullPred(degree, time);
+        SimpleMatrix postZ = prior[1].solve(prior[0]).plus(prec.mult(obs));
+        SimpleMatrix postCov = (prior[1].invert().plus(prec)).invert();
+        means[degree] = postCov.mult(postZ);
+        covs[degree] = postCov;
+        lastUpdated[degree] = time;
+        return means[degree];
+    }
 }
