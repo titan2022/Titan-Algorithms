@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.titanrobotics2022.geometry.geometry2d.VectorCartesian2D;
 
 public class LineSegment2DTest {
-    private static final double delta = 1e-9;
+    //private static final double delta = 1e-9;
     
     /*
      * Proper intersections contain no colinear points.

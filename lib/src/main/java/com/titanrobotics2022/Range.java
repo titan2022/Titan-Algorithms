@@ -1,6 +1,6 @@
 package com.titanrobotics2022;
 
-public class Range<T extends Comparable<T>> {// TODO: require that range is for numbers in template type figure out how to get primitives to work.
+public class Range<T extends Comparable<T>> {
     private T min, max;
 
     public Range(T min, T max)
