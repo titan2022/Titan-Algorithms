@@ -1,5 +1,7 @@
 package com.titanrobotics2022.geometry.geometry3d;
 
+import org.apache.commons.math3.util.FastMath;
+
 /**
  * A vector 3D class
  */
@@ -28,4 +30,32 @@ public class Vector3D {
     {
         return new Vector3D(this.x + rhs.x, this.y + rhs.y, this.z + rhs.z);
     }
+
+    /**
+     * Gets the magnitude of this vector.
+     * 
+     * @return Magnitude of vector
+     */
+    public double magnitude() {
+        return FastMath.sqrt(x * x + y * y + z * z);
+    }
+
+    /**
+     * Gets the elevation angle of this vector.
+     * 
+     * @return Elevation angle of vector
+     */
+    public double elevationAngle() {
+        return FastMath.atan2(y, x);
+    }
+
+    /**
+     * Gets the azimuthal angle of this vector.
+     * 
+     * @return Azimuthal angle of vector
+     */
+    public double azimuthalAngle() {
+        return FastMath.atan2(y, z);
+    }
+
 }
