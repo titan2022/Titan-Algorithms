@@ -76,4 +76,14 @@ public class DiscreteTimeLinearQuadraticRegulator {
     {
         this(A, B, Q, R, F, goal, 1e-3, 1000);
     }
+
+    /**
+     * Evaluate u = -Kx
+     * @param x State
+     * @return u Control
+     */
+    public SimpleMatrix getControl(SimpleMatrix x)
+    {
+        return this.K.mult(x).negative();
+    }
 }
