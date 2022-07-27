@@ -58,7 +58,7 @@ public class PointCloudProcessor {
      * @param name Name of obstacle (each point's name will begin with this name)
      */
     public ArrayList<CollisionAvoidance> generateObstacles(RMPRoot root, String name) {
-        ArrayList<CollisionAvoidance> obstacles; = new ArrayList<>();
+        ArrayList<CollisionAvoidance> obstacles = new ArrayList<>();
         int i = 0;
         for (Vector2D vec : projection) {
             String vecName = String.format("%s_%d", name, i++);
