@@ -1,20 +1,22 @@
 package com.titanrobotics2022.localization;
 
-import org.ejml.data.DMatrix2;
-import org.ejml.data.DMatrix2x2;
-import static org.ejml.dense.fixed.CommonOps_DDF2.*;
+import org.ejml.data.DMatrix3;
+import org.ejml.data.DMatrix3x3;
+
+import static org.ejml.dense.fixed.CommonOps_DDF3.*;
 
 /**
  * A Kalman Filter with higher-order derivative information.
  */
 public class KalmanFilter {
-    private final DMatrix2[] zs;
-    private final DMatrix2x2[] precs;
-    private final DMatrix2[] means;
-    private final DMatrix2x2[] covs;
-    private final DMatrix2x2 drift;
-    private final DMatrix2 v = new DMatrix2();
-    private final DMatrix2x2 m = new DMatrix2x2();
+    //[x, y, phi]
+    private final DMatrix3[] zs;
+    private final DMatrix3x3[] precs;
+    private final DMatrix3[] means;
+    private final DMatrix3x3[] covs;
+    private final DMatrix3x3 drift;
+    private final DMatrix3 v = new DMatrix3();
+    private final DMatrix3x3 m = new DMatrix3x3();
     private int bad_cov;
     private int bad_mean;
 
@@ -26,19 +28,19 @@ public class KalmanFilter {
      * @param drift  The fundamental uncertainty per unit time of the maximum
      *  degree derivative of the target quantity.
      */
-    public KalmanFilter(int order, DMatrix2x2 drift) {
+    public KalmanFilter(int order, DMatrix3x3 drift) {
         if(order < 0)
             throw new IllegalArgumentException("Order must be nonnegative.");
         this.drift = drift.copy();
-        zs = new DMatrix2[order+1];
-        precs = new DMatrix2x2[order+1];
-        means = new DMatrix2[order+1];
-        covs = new DMatrix2x2[order+1];
+        zs = new DMatrix3[order+1];
+        precs = new DMatrix3x3[order+1];
+        means = new DMatrix3[order+1];
+        covs = new DMatrix3x3[order+1];
         for(int i=0; i<=order; i++){
-            zs[i] = new DMatrix2();
-            precs[i] = new DMatrix2x2();
-            means[i] = new DMatrix2();
-            covs[i] = new DMatrix2x2();
+            zs[i] = new DMatrix3();
+            precs[i] = new DMatrix3x3();
+            means[i] = new DMatrix3();
+            covs[i] = new DMatrix3x3();
         }
         bad_cov = (1<<(order+1))-1;
         bad_mean = (1<<(order+1))-1;
@@ -53,7 +55,7 @@ public class KalmanFilter {
      * @param prec  The precision (inverse covariance) associated with the
      *  measurement.
      */
-    public void update(int order, DMatrix2 pred, DMatrix2x2 prec) {
+    public void update(int order, DMatrix3 pred, DMatrix3x3 prec) {
         mult(prec, pred, v);
         addEquals(zs[order], v);
         addEquals(precs[order], prec);
@@ -127,7 +129,7 @@ public class KalmanFilter {
      *  expectation of.
      * @param out  A vector to populate with the expectation.
      */
-    public void getPred(int order, DMatrix2 out) {
+    public void getPred(int order, DMatrix3 out) {
         if(((bad_mean >> order) & 1) == 1){
             calcCov(order);
             mult(covs[order], zs[order], out);
@@ -144,8 +146,8 @@ public class KalmanFilter {
      * @return  The expectation of the given derivative of the target quantity,
      *  as a vector.
      */
-    public DMatrix2 getPred(int order) {
-        DMatrix2 res = new DMatrix2();
+    public DMatrix3 getPred(int order) {
+        DMatrix3 res = new DMatrix3();
         getPred(order, res);
         return res;
     }
@@ -157,7 +159,7 @@ public class KalmanFilter {
      *  covariance of.
      * @param out  A matrix to populate with the covariance.
      */
-    public void getCov(int order, DMatrix2x2 out) {
+    public void getCov(int order, DMatrix3x3 out) {
         if(((bad_cov >> order) & 1) == 1)
             safeInvert(precs[order], out);
         else
@@ -171,8 +173,8 @@ public class KalmanFilter {
      * @return  The covariance of the given derivative of the target quantity,
      *  as a matrix.
      */
-    public DMatrix2x2 getCov(int order) {
-        DMatrix2x2 res = new DMatrix2x2();
+    public DMatrix3x3 getCov(int order) {
+        DMatrix3x3 res = new DMatrix3x3();
         getCov(order, res);
         return res;
     }
@@ -188,7 +190,7 @@ public class KalmanFilter {
      *  expectation of.
      * @param pred  The new expectation.
      */
-    public void setPred(int order, DMatrix2 pred) {
+    public void setPred(int order, DMatrix3 pred) {
         mult(precs[order], pred, zs[order]);
         bad_mean |= 1<<order;
     }
@@ -203,7 +205,7 @@ public class KalmanFilter {
      *  covariance of.
      * @param pred  The new covariance matrix.
      */
-    public void setCov(int order, DMatrix2x2 cov) {
+    public void setCov(int order, DMatrix3x3 cov) {
         safeInvert(cov, precs[order]);
         covs[order].set(cov);
         bad_cov ^= (bad_cov >> order) & 1;
@@ -219,7 +221,7 @@ public class KalmanFilter {
      *  precision of.
      * @param pred  The new precision matrix.
      */
-    public void setPrec(int order, DMatrix2x2 prec) {
+    public void setPrec(int order, DMatrix3x3 prec) {
         precs[order].set(prec);
         bad_cov |= 1<<order;
     }
@@ -233,7 +235,7 @@ public class KalmanFilter {
      * @param a  The matrix to invert.
      * @param inv  The inverted matrix. Can be the same as `a`.
      */
-    private static void safeInvert(DMatrix2x2 a, DMatrix2x2 inv) {
+    private static void safeInvert(DMatrix3x3 a, DMatrix3x3 inv) {
         if(!invert(a, inv)){
             double sigma = 1 / (a.a11 + a.a22);
             scale(sigma * sigma, a, inv);
