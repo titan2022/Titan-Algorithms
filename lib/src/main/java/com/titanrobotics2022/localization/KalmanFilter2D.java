@@ -201,7 +201,7 @@ public class KalmanFilter2D {
      * 
      * @param order  The derivative of the target quantity to set the
      *  covariance of.
-     * @param pred  The new covariance matrix.
+     * @param cov  The new covariance matrix.
      */
     public void setCov(int order, DMatrix2x2 cov) {
         safeInvert(cov, precs[order]);
@@ -217,7 +217,7 @@ public class KalmanFilter2D {
      * 
      * @param order  The derivative of the target quantity to set the
      *  precision of.
-     * @param pred  The new precision matrix.
+     * @param prec  The new precision matrix.
      */
     public void setPrec(int order, DMatrix2x2 prec) {
         precs[order].set(prec);

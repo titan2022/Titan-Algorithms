@@ -158,7 +158,7 @@ public class AngularKalmanFilter {
      *  covariance of.
      * @return  The covariance of the given derivative of the target quantity.
      */
-    public double getCov(int order, double out) {
+    public double getCov(int order) {
         return ((bad_cov >> order) & 1) == 1 ? 1.0 / precs[order] : covs[order];
     }
 
@@ -187,7 +187,7 @@ public class AngularKalmanFilter {
      * 
      * @param order  The derivative of the target quantity to set the
      *  covariance of.
-     * @param pred  The new covariance.
+     * @param cov  The new covariance.
      */
     public void setCov(int order, double cov) {
         precs[order] = 1.0 / cov;
@@ -203,7 +203,7 @@ public class AngularKalmanFilter {
      * 
      * @param order  The derivative of the target quantity to set the
      *  precision of.
-     * @param pred  The new precision.
+     * @param prec  The new precision.
      */
     public void setPrec(int order, double prec) {
         precs[order] = prec;
