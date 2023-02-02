@@ -7,7 +7,7 @@ import static org.ejml.dense.fixed.CommonOps_DDF2.*;
 /**
  * A Kalman Filter with higher-order derivative information.
  */
-public class KalmanFilter {
+public class KalmanFilter2D {
     private final DMatrix2[] zs;
     private final DMatrix2x2[] precs;
     private final DMatrix2[] means;
@@ -26,7 +26,7 @@ public class KalmanFilter {
      * @param drift  The fundamental uncertainty per unit time of the maximum
      *  degree derivative of the target quantity.
      */
-    public KalmanFilter(int order, DMatrix2x2 drift) {
+    public KalmanFilter2D(int order, DMatrix2x2 drift) {
         if(order < 0)
             throw new IllegalArgumentException("Order must be nonnegative.");
         this.drift = drift.copy();
@@ -78,8 +78,8 @@ public class KalmanFilter {
                 alpha *= time / i;
                 scale(alpha, means[j], v);
                 scale(alpha, covs[j], m);
-                addEquals(means[i], means[j]);
-                addEquals(covs[i], covs[j]);
+                addEquals(means[i], v);
+                addEquals(covs[i], m);
             }
             alpha *= time / zs.length;
             scale(alpha, drift, m);
@@ -206,7 +206,7 @@ public class KalmanFilter {
     public void setCov(int order, DMatrix2x2 cov) {
         safeInvert(cov, precs[order]);
         covs[order].set(cov);
-        bad_cov ^= (bad_cov >> order) & 1;
+        bad_mean &= (-1) ^ (1<<order);
     }
     /**
      * Sets the precision of a derivative of the target quantity.
