@@ -9,15 +9,15 @@ dependencies {
     api 'org.apache.commons:commons-math3:3.+'
 
     // Linear Algebra Library
-    api 'org.ejml:ejml-all:0.40'
+    api 'org.ejml:ejml-all:0.41'
 
     // Portable Robotics Data Format
     api 'com.github.swri-robotics:bag-reader-java:1.10.3'
 
     // WPILIB Dependencies
-    api 'edu.wpi.first.wpilibj:wpilibj-java:2021.3.1'
-    api 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2021.3.1'
-    api 'edu.wpi.first.wpimath:wpimath-java:2021.3.1'
+    api 'edu.wpi.first.wpilibj:wpilibj-java:2022.4.1'
+    api 'edu.wpi.first.wpilibNewCommands:wpilibNewCommands-java:2022.4.1'
+    api 'edu.wpi.first.wpimath:wpimath-java:2022.4.1'
 }
 
 task sourceJar(type: Jar) {
@@ -36,7 +36,7 @@ publishing{
             from components.java
             groupId 'com.titanrobotics2022.titan-algorithms'
             artifactId 'titan-algorithms-lib'
-            version '0.0.0'
+            version '0.0.1'
 
             artifact(sourceJar) {
                 classifier "sources"
@@ -49,3 +49,6 @@ publishing{
 }
 
 project.archivesBaseName = 'titan-algorithms-lib'
+
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
