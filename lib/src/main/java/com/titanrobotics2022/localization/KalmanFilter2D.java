@@ -207,7 +207,7 @@ public class KalmanFilter2D {
      */
     public void setCov(int order, DMatrix2x2 cov) {
         safeInvert(cov, precs[order]);
-        covs[order].set(cov);
+        covs[order].setTo(cov);
         bad_mean &= (-1) ^ (1<<order);
     }
 

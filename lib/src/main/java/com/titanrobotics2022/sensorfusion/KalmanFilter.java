@@ -104,8 +104,8 @@ public class KalmanFilter {
      * @param time  The new time of last update for this derivative of the target quantity.
      */
     public void set(int degree, DMatrixRMaj mean, DMatrixRMaj cov, double time) {
-        means[degree].set(mean);
-        covs[degree].set(cov);
+        means[degree].setTo(mean);
+        covs[degree].setTo(cov);
         lastUpdated[degree] = time;
     }
     /**
